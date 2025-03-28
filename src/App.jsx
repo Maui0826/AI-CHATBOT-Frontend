@@ -13,7 +13,9 @@ function App() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8080/ask', { question });
+      const res = await axios.post('https://valnat-bot.onrender.com/ask', {
+        question,
+      });
       const answer = res.data.answer;
 
       let updatedChats = [...chats];
