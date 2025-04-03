@@ -1,17 +1,17 @@
-export function Form({ handleSubmit, question, setQuestion }) {
+export function Form({ handleSubmit, question, setQuestion, isTyping }) {
   return (
     <div className="form-container">
-      <h1>Ask ValNat AI</h1>
+      <h1>{isTyping ? 'Please Wait...' : 'Ask ValBot'}</h1>
       <form onSubmit={handleSubmit} className="form">
         <input
           type="text"
-          value={question}
+          value={isTyping ? '' : question}
           onChange={e => setQuestion(e.target.value)}
           placeholder="Ask something about ValNat"
           className="input"
         />
         <button type="submit" className="button">
-          Ask
+          {isTyping ? '🛑' : 'Ask'}
         </button>
       </form>
     </div>

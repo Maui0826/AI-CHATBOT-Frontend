@@ -1,6 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 
-export function PreviousChat({ history }) {
+export function PreviousChat({ history, isTyping }) {
   return (
     <div className="previous-chat">
       <h3>Previous Chat</h3>
@@ -14,6 +14,13 @@ export function PreviousChat({ history }) {
           </div>
         </div>
       ))}
+      {isTyping ? (
+        <div className="typing">
+          <p>TYPING......</p>
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 }

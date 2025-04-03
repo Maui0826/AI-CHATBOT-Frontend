@@ -9,9 +9,14 @@ function App() {
   const [selectedChatIndex, setSelectedChatIndex] = useState(null); // Which chat you're on
   const [question, setQuestion] = useState('');
   const [response, setResponse] = useState('');
+  const [isTyping, setIsTyping] = useState(false); // Track typing state
+  const [isSubmitting, setIsSubmitting] = useState(false); // Track submit state
 
   const handleSubmit = async e => {
     e.preventDefault();
+    setIsSubmitting(true); // Set to true when submitting
+    setIsTyping(true); // Show typing state
+
     try {
       const res = await axios.post('https://valnat-bot.onrender.com/ask', {
         question,
@@ -31,8 +36,12 @@ function App() {
       setChats(updatedChats);
       setResponse(answer);
       setQuestion('');
+      setIsTyping(false); // Hide typing state once response is ready
+      setIsSubmitting(false); // Reset submitting state
     } catch (err) {
       setResponse('Error: ' + err.message);
+      setIsTyping(false); // Hide typing state on error
+      setIsSubmitting(false); // Reset submitting state
     }
   };
 
@@ -65,6 +74,8 @@ function App() {
         question={question}
         setQuestion={setQuestion}
         response={response}
+        isTyping={isTyping}
+        isSubmitting={isSubmitting}
       />
     </div>
   );

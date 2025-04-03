@@ -7,6 +7,7 @@
   --other: #a56d8c;
   --forebackground: #0706077c;
 }
+
 html {
   width: 100vw;
   height: 100vh;
@@ -37,6 +38,7 @@ body {
   color: var(--secondary);
   font-weight: 500;
 }
+
 .navbar img {
   height: 60px;
   width: 70px;
@@ -46,7 +48,7 @@ body {
 
 .sidebar {
   background-color: var(--forebackground);
-  color: var(var(--text));
+  color: var(--text);
   width: 14%;
   padding: 10px;
   display: flex;
@@ -105,10 +107,6 @@ body {
   color: var(--text);
 }
 
-.chat-history button:not(active) {
-  /* background-color: var(--other); */
-  color: var(--secondary);
-}
 .main {
   flex: 1;
   display: flex;
@@ -124,6 +122,7 @@ body {
   overflow-y: auto;
   margin-bottom: 100px;
 }
+
 .previous-chat h3 {
   margin-bottom: 10px;
   color: var(--secondary);
@@ -136,7 +135,7 @@ body {
   margin-bottom: 5px;
   border-left: 4px solid var(--text);
   width: 50%;
-  margin-left: auto; /* This moves it to the right */
+  margin-left: auto;
   text-align: left;
 }
 
@@ -167,7 +166,7 @@ body {
   border-radius: 12px;
   border: 2px var(--text) solid;
   position: fixed;
-  bottom: 20px; /* distance from bottom */
+  bottom: 20px;
   left: 60%;
   transform: translateX(-50%);
   gap: 10px;
@@ -206,4 +205,207 @@ body {
 .button:hover {
   background-color: var(--background);
   border: 1px var(--text) solid;
+}
+
+/* Typing animation */
+.typing-state {
+  font-style: italic;
+  color: gray;
+}
+
+.typing-state span {
+  font-size: 14px;
+}
+
+.response-section {
+  margin-top: 20px;
+}
+
+.response {
+  font-size: 16px;
+}
+
+.burger {
+  width: 200px;
+  display: block;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  margin-left: 25px;
+}
+
+.burger .burger-icon {
+  font-size: 2.5rem;
+  padding: 10px;
+  margin: 0;
+  border: 0;
+}
+
+.burger-icon {
+  background-color: transparent;
+  border: 0;
+  color: var(--text);
+  border: 1px solid var(--secondary);
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.sidebar.visible {
+  left: 0; /* Show the sidebar when visible */
+}
+
+/* Mobile View */
+@media (max-width: 767px) {
+  .app {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main {
+    max-width: 767px;
+    height: auto;
+    padding: 0;
+  }
+  .form-container {
+    width: 90%; /* Form takes 90% width on mobile */
+    bottom: 10px; /* Adjust bottom margin */
+    left: 50%;
+    height: 75px;
+    transform: translateX(-50%);
+    padding: 5px;
+  }
+  .form-container h1 {
+    font-size: 1rem;
+  }
+  .form-container input {
+    font-size: 0.8rem;
+    width: 90%;
+    margin: 5px;
+  }
+
+  .previous-chat {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .box {
+    width: 100%;
+  }
+
+  .box .response p,
+  .box .question p {
+    font-size: 0.8rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar p {
+    font-size: 1rem; /* Adjust font size for mobile */
+  }
+
+  .navbar img {
+    height: 50px;
+    width: 60px;
+  }
+
+  .sidebar {
+    width: 20%; /* Sidebar takes full width on mobile */
+    height: 100%; /* Let the sidebar be as tall as the content */
+    padding: 10px 0;
+    border-right: none; /* Remove border on mobile */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .burger-icon {
+    font-size: 1rem;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid var(--secondary);
+  }
+
+  .sidebar h2 {
+    margin-bottom: 15px;
+    font-size: 1rem; /* Adjust title font size */
+    text-align: center;
+  }
+
+  .sidebar .burger-icon {
+    width: 100%;
+  }
+
+  .sidebar p {
+    font-size: 0.8rem; /* Adjust title font size */
+    text-align: center;
+  }
+
+  .new-chat {
+    width: 80%; /* Full width button for mobile */
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .new-chat button {
+    font-size: 0.8rem;
+  }
+  .chat-history {
+    width: 100%;
+    align-items: center;
+  }
+  .chat-history button {
+    width: 80%; /* Buttons take full width on mobile */
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+
+  .chat-history .active {
+    width: 80%;
+    font-size: 0.8rem;
+  }
+  .previous-chat {
+    width: 100%;
+  }
+  .burger {
+    width: 100px;
+  }
+  .burger.burger-icon {
+  }
+}
+
+/* Tablet View */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 25%; /* Make sidebar smaller on tablets */
+  }
+
+  .main {
+    width: 75%; /* Main content takes 75% width */
+  }
+
+  .form-container {
+    width: 70%; /* Form container takes 70% of the screen width */
+  }
+}
+
+/* Default behavior (Desktop and larger) */
+@media (min-width: 1025px) {
+  .app {
+    display: flex;
+    flex-direction: row; /* Default layout is side by side */
+  }
+
+  .sidebar {
+    width: 14%; /* Sidebar takes 14% of the screen width on desktop */
+  }
+
+  .main {
+    width: 86%; /* Main content takes 86% of the screen width on desktop */
+  }
 }
