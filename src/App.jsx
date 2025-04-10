@@ -4,28 +4,33 @@ import axios from 'axios';
 import { Sidebar } from './Component/Sidebar';
 import { ChatBox } from './Component/ChatBox';
 
+const welcomeMessage = {
+  question: '',
+  answer: `Hello! I'm ValBot 👋  
+I'm your friendly AI assistant, here to provide accurate and helpful information about Valenzuela National High School. Whether you have questions about the school's history, programs, policies, or upcoming events, I'm here 24/7 to assist you. Just type your question, and I'll do my best to help you right away!`,
+};
+
 function App() {
-  const [chats, setChats] = useState([]); // List of all chat sessions
-  const [selectedChatIndex, setSelectedChatIndex] = useState(null); // Which chat you're on
+  const [chats, setChats] = useState([[welcomeMessage]]);
+  const [selectedChatIndex, setSelectedChatIndex] = useState(0);
   const [question, setQuestion] = useState('');
-  const [response, setResponse] = useState('');
-  const [isTyping, setIsTyping] = useState(false); // Track typing state
-  const [isSubmitting, setIsSubmitting] = useState(false); // Track submit state
+  const [response, setResponse] = useState(welcomeMessage.answer);
+  const [isTyping, setIsTyping] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setIsSubmitting(true); // Set to true when submitting
-    setIsTyping(true); // Show typing state
+    setIsSubmitting(true);
+    setIsTyping(true);
 
     try {
       const res = await axios.post('https://valnat-bot.onrender.com/ask', {
         question,
       });
-      const answer = res.data.answer;
+      let answer = res.data.answer;
 
       let updatedChats = [...chats];
       if (selectedChatIndex === null) {
-        // First ever chat
         updatedChats.push([{ question, answer }]);
         setSelectedChatIndex(updatedChats.length - 1);
       } else {
@@ -35,20 +40,16 @@ function App() {
       setChats(updatedChats);
       setResponse(answer);
       setQuestion('');
-      setIsTyping(false); // Hide typing state once response is ready
-      setIsSubmitting(false); // Reset submitting state
+      setIsTyping(false);
+      setIsSubmitting(false);
     } catch (err) {
       setResponse('Error: ' + err.message);
-      setIsTyping(false); // Hide typing state on error
-      setIsSubmitting(false); // Reset submitting state
+      setIsTyping(false);
+      setIsSubmitting(false);
     }
   };
 
   const handleNewChat = () => {
-    const welcomeMessage = {
-      question: '',
-      answer: 'Hi! How can I help you today?',
-    };
     setChats(prev => [...prev, [welcomeMessage]]);
     setSelectedChatIndex(chats.length);
     setQuestion('');
