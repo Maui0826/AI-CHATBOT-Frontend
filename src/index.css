@@ -408,6 +408,10 @@ body {
     width: 20%;
     position: sticky;
   }
+
+  form .input {
+    font-size: 0.6rem;
+  }
 }
 
 /* Tablet View */
