@@ -24,7 +24,6 @@ function App() {
       const answer = res.data.answer;
 
       let updatedChats = [...chats];
-
       if (selectedChatIndex === null) {
         // First ever chat
         updatedChats.push([{ question, answer }]);
@@ -46,10 +45,14 @@ function App() {
   };
 
   const handleNewChat = () => {
-    setChats(prev => [...prev, []]); // Add empty chat
-    setSelectedChatIndex(chats.length); // Select new chat
+    const welcomeMessage = {
+      question: '',
+      answer: 'Hi! How can I help you today?',
+    };
+    setChats(prev => [...prev, [welcomeMessage]]);
+    setSelectedChatIndex(chats.length);
     setQuestion('');
-    setResponse('');
+    setResponse(welcomeMessage.answer);
   };
 
   const handleSelectChat = index => {

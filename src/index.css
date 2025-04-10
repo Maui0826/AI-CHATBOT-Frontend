@@ -142,7 +142,7 @@ body {
 .previous-chat .response {
   width: 50%;
   background-color: var(--forebackground);
-  padding: 5px 0 5px 10px;
+  padding: 5px 5px 5px 10px;
   border-radius: 8px;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -255,19 +255,26 @@ body {
 }
 
 /* Mobile View */
-@media (max-width: 767px) {
+@media (max-width: 480px) {
+  * {
+    margin: 0;
+  }
   .app {
     display: flex;
     flex-direction: column;
     margin: 0;
     padding: 0;
+    max-width: 480px;
+    height: 100vh;
   }
 
   .main {
-    max-width: 767px;
-    height: auto;
+    max-width: 100%;
+    display: flex;
     padding: 0;
+    flex: 1;
   }
+
   .form-container {
     width: 90%; /* Form takes 90% width on mobile */
     bottom: 10px; /* Adjust bottom margin */
@@ -276,9 +283,11 @@ body {
     transform: translateX(-50%);
     padding: 5px;
   }
+
   .form-container h1 {
     font-size: 1rem;
   }
+
   .form-container input {
     font-size: 0.8rem;
     width: 90%;
@@ -286,21 +295,41 @@ body {
   }
 
   .previous-chat {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin: 0;
+    height: 80%;
+    max-width: 480px;
+    position: relative;
+    overflow: scroll;
+    transform: translate(30%, 0);
+    margin-left: 30px;
   }
   .box {
     width: 100%;
+    margin: 0;
   }
 
   .box .response p,
+  .box .response li {
+    font-size: 0.6rem;
+    overflow-wrap: break-word;
+  }
   .box .question p {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
+    overflow-wrap: break-word;
+  }
+  .box .question {
+    margin: 0;
+    margin-left: 80px;
+    border-radius: 20px;
+    width: 40%;
+    max-width: 480px;
+    overflow: scroll;
   }
 
+  .box .response {
+    max-width: 480px;
+    width: 40%;
+  }
   .navbar {
     flex-direction: column;
     align-items: center;
@@ -323,6 +352,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: fixed;
   }
 
   .burger-icon {
@@ -333,9 +363,10 @@ body {
   }
 
   .sidebar h2 {
-    margin-bottom: 15px;
+    margin: 15px;
     font-size: 1rem; /* Adjust title font size */
     text-align: center;
+    justify-content: center;
   }
 
   .sidebar .burger-icon {
@@ -369,14 +400,12 @@ body {
     width: 80%;
     font-size: 0.8rem;
   }
-  .previous-chat {
-    width: 100%;
-  }
+
   .burger {
     width: 100px;
   }
-  .burger.burger-icon {
-  }
+  /* .burger.burger-icon {
+  } */
 }
 
 /* Tablet View */
