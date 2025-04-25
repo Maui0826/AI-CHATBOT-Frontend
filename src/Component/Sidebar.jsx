@@ -32,7 +32,7 @@ export function Sidebar({
                 onClick={() => handleSelectChat(index)}
                 className={index === selectedChatIndex ? 'active' : ''}
               >
-                Chat {index + 1}
+                New Chat {index + 1}
               </button>
             ))}
           </div>

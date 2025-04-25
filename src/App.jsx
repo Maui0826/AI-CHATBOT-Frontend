@@ -18,6 +18,8 @@ function App() {
   const [isTyping, setIsTyping] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  let firstChat = question;
+
   const handleSubmit = async e => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -70,6 +72,7 @@ function App() {
         handleNewChat={handleNewChat}
         handleSelectChat={handleSelectChat}
         selectedChatIndex={selectedChatIndex}
+        firstChat={firstChat}
       />
       <ChatBox
         chats={chats}
